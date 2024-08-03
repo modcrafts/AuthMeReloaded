@@ -148,6 +148,14 @@ public class AuthMeApi {
         return AuthMePlayerImpl.fromPlayerAuth(auth);
     }
 
+    public PlayerAuth getPlayerAuth(String playerName) {
+        PlayerAuth auth = playerCache.getAuth(playerName);
+        if (auth == null) {
+            auth = dataSource.getAuth(playerName);
+        }
+        return auth;
+    }
+
     /**
      * Get the last ip address of a player.
      *
